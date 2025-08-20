@@ -1,0 +1,222 @@
+/* ===== GLOBAL RESET & VARIABLES ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --main-bg: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    --app-bg: #fff;
+    --input-bg: #e6e7e4;
+
+    --text-primary: #000;
+    --text-secondary: #555;
+    --heading-color: #202993;
+
+    --task-bg: transparent;
+    --task-hover: #edeefe;
+    --checked-task: #555;
+
+    --add-btn-bg:#05a4b6;
+    --theme-btn-bg: var(--main-bg);
+}
+
+[data-theme="dark"] {
+    --main-bg: #121212;
+    --app-bg: #333;
+    --input-bg: #555;
+
+    --text-primary: #fff;
+    --text-secondary: #eee;
+    --heading-color: #aab5ff;
+
+    --task-hover: #444;
+    --checked-task: #bbb;
+
+    --add-btn-bg:  #CCCCCC ;
+}
+
+/* ===== BASE STYLES ===== */
+html {
+    transition: all 0.3s ease;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--main-bg);
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    background: var(--main-bg);
+    overflow: hidden;
+    padding: 10px;
+    margin: 0;
+}
+
+.todo-app {
+    width: 100%;
+    max-width: 500px;
+    max-height: 80vh;
+    background: var(--app-bg);
+    margin: 50px auto 10px;
+    overflow-y: auto;
+    padding: 40px 40px 70px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.todo-app h2 {
+    color: var(--heading-color);
+    display: flex;
+    align-items: center;
+    
+}
+
+.todo-app h2 img {
+    width: 30px;
+    margin-left: 10px;
+}
+
+#theme-toggle {
+    padding: 8px 16px;
+    background: var(--theme-btn-bg);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+/* ===== INPUT SECTION ===== */
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--input-bg);
+    border-radius: 30px;
+    padding-left: 20px;
+    margin-bottom: 20px;
+    margin-top: 50px;
+}
+
+input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 10px;
+    font-size: 14px;
+    color: var(--text-primary);
+}
+
+button {
+    border: none;
+    outline: none;
+    padding: 16px 35px;
+    background: var(--add-btn-bg);
+    color: #fff;
+    
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 40px;
+}
+
+/* ===== TASK LIST ===== */
+ul li {
+    list-style: none;
+    font-size: 20px;
+    padding: 12px 8px 12px 50px;
+    user-select: none;
+    cursor: pointer;
+    position: relative;
+    background: var(--task-bg);
+    color: var(--text-primary);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    transition: all 0.2s;
+}
+
+ul li:hover {
+    background: var(--task-hover);
+}
+
+ul li::before {
+    content: '';
+    position: absolute;
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+    background-image: url(images/unchecked.png);
+    background-size: cover;
+    background-position: center;
+    top: 8px;
+    left: 8px;
+}
+
+ul li.checked {
+    color: var(--checked-task);
+    text-decoration: line-through;
+}
+
+ul li.checked::before {
+    background-image: url(images/checked.png);
+}
+
+ul li span {
+    position: absolute;
+    right: 0;
+    top: 5px;
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+    color: var(--text-secondary);
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+}
+
+ul li span:hover {
+    background: var(--task-hover);
+}
+li {
+  position: relative;
+  padding-right: 60px; /* space for icons */
+}
+
+li .edit-btn,
+li .delete-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 18px;
+}
+
+li .delete-btn {
+
+  font-size: 25px;
+ 
+}
+
+.edit-btn {
+  width: 18px;         /* 👈 Adjust width */
+  height: 18px;     
+  right: 35px;   /* 👈 Adjust height */
+  cursor: pointer;
+  margin-right: 10px;  /* Space between buttons */
+}
